@@ -1,3 +1,31 @@
+// type Person = {
+//   name: string;
+//   age: number;
+//   isProgrammer?: boolean;
+//   friends: string[];
+//   address?: {
+//     street: string;
+//   };
+// };
+
+// const person1: Person = { name: 'Kyle', age: 28, friends: [] };
+// const person2: Person = {
+//   name: 'Sally',
+//   age: 23,
+//   friends: [],
+//   address: {
+//     street: 'Baker street',
+//   },
+// };
+
+// person1;
+// person2;
+
+// type Person = number;
+
+// const person: Person = 123;
+// person;
+
 // type Option = {
 //   debugMode?: boolean;
 //   indentLevel?: number;
@@ -248,8 +276,239 @@
 //   return new Promise<string>(res => setTimeout(res('hi'), duration));
 // }
 
-async function wait(duration: number) {
-  return await fetch('asd');
+// async function wait(duration: number) {
+//   return await fetch('asd');
+// }
+
+// wait(1000).then(value => console.log(value.json()));
+
+// type Todo = {
+//   title?: string;
+//   completed?: boolean;
+//   address?: {
+//     street?: string;
+//   };
+// };
+
+// // type FormTodo = Required<Pick<Todo, 'title'>> & Omit<Todo, 'title'>;
+// type FormTodo = Required<Pick<Todo, 'title'>> & Todo;
+
+// const todo: FormTodo = {
+//   completed: true,
+// };
+
+// type Todo = {
+//   title?: string;
+//   completed?: boolean;
+//   address?: {
+//     street?: string;
+//   };
+// };
+
+// type RequiredPick<T, Key extends keyof T> = Required<Pick<T, Key>> & T;
+// type PartialPick<T, Key extends keyof T> = Required<Pick<T, Key>> & Omit<T, Key>;
+
+// type FormTodo = RequiredPick<Todo, 'title'>;
+
+// const todo: FormTodo = {
+//   completed: true,
+// };
+
+// function checkLength(a: string, b: number) {
+//   return a.length < b;
+// }
+
+// type ReturnOfLengthCheck1 = ReturnType<typeof checkLength>;
+
+// type Func = () => void;
+// type ReturnOfLengthCheck2 = Parameters<typeof checkLength>;
+// type ReturnOfLengthCheck3 = ReturnType<Func>;
+
+// type Person = {
+//   name: string;
+//   age: number;
+// };
+
+// // type PeopleGroupedByName = {
+// //   [index: string]: Person[];
+// // };
+
+// type PeopleGroupedByName = Record<Person['name'], Person>;
+
+// type Todo = {
+//   title: string;
+//   completed: boolean;
+// };
+
+// const todo = {
+//   title: 'asd',
+//   completed: false,
+// } as const;
+
+// type Test = typeof todo;
+
+// type FinalTodo = Readonly<Todo>;
+
+// Object.freeze();
+
+// type Async = Promise<Promise<string>>;
+
+// type Value = Awaited<Async>;
+
+// async function doSmth() {
+//   return 3;
+// }
+
+// type Test = Awaited<ReturnType<typeof doSmth>>;
+
+// type Todo = {
+//   title: string;
+//   priority: 'High' | 'Normal' | 'Low' | 'asdasdasd';
+//   isComplete: boolean;
+//   description?: string;
+//   dueDate: Date | string;
+// };
+
+// function extendTodo(todo: Todo) {
+//   // if (typeof todo.dueDate === 'string') console.log(todo.dueDate);
+//   // if (todo.dueDate instanceof Date) console.log(todo.dueDate);
+//   // else console.log(todo.dueDate);
+
+//   // if (todo.dueDate instanceof Date) {
+//   //   // SMART TYPESCRIPT
+//   //   return;
+
+//   // todo.description?.length;
+//   // console.log(todo.dueDate);
+
+//   switch (todo.priority) {
+//     case 'High':
+//       console.log(todo.priority);
+//       break;
+//     case 'Normal':
+//       console.log(todo.priority);
+//       break;
+//     case 'Low':
+//       console.log(todo.priority);
+//       break;
+//     case 'asdasdasd':
+//       console.log(todo.priority);
+//       break;
+//     default:
+//       const exhaustiveCheck: never = todo.priority;
+//       return exhaustiveCheck;
+//   }
+// }
+
+// // const form = document.querySelector<HTMLFormElement>('.form');
+// // form.addEventListener('submit', () => {});
+// const form = document.querySelector<HTMLFormElement>('.form')!;
+// form.addEventListener('submit', () => {});
+
+// function func(data: unknown) {
+//   if (data !== null && typeof data === 'object' && 'name' in data && typeof data.name === 'string')
+//     console.log(data.name.length);
+// }
+
+// type Todo = {
+//   title: string;
+// };
+
+// const a = 2;
+// (a as string).length;
+
+// function func(data: unknown) {
+//   fetch('asdasdas')
+//     .then(res => res.json())
+//     .then(data => data as Todo)
+//     .then(todo => console.log(todo));
+// }
+
+// type Todo = {
+//   title: string;
+//   dueDate: string | Date;
+//   isComplete: boolean;
+// };
+
+// const todo = {
+//   title: 'asdasd',
+//   dueDate: new Date(),
+//   isComplete: true,
+// } satisfies Todo;
+
+// todo.dueDate.setDate(4);
+
+// type SuccessResponse = {
+//   status: 'Success';
+//   data: { id: string; name: string };
+// };
+
+// type ErrorResponse = {
+//   status: 'Error';
+//   errorMessage: string;
+// };
+
+// type UserApiResponse = SuccessResponse | ErrorResponse;
+
+// function handleResponse(res: UserApiResponse) {
+//   switch (res.status) {
+//     case 'Error':
+//       console.log(res.errorMessage);
+//       break;
+//     case 'Success':
+//       console.log(res.data.id);
+//       break;
+//     default:
+//       const exhaustiveCheck: never = res.status;
+//       return exhaustiveCheck;
+//   }
+// }
+
+// handleResponse;
+
+// function sum(nums: number[]): number;
+// function sum(a: number, b: number): number;
+// function sum(a: number | number[], b?: number) {
+//   if (Array.isArray(a)) return a.reduce((c, a) => a + c, 0);
+//   if (b) return a + b;
+// }
+
+// const s1 = sum([1, 2]);
+// const s2 = sum(1, 2);
+// const s3 = sum([1, 2], 3);
+
+// console.log(s1, s2, s3);
+
+// type Person = {
+//   name: string;
+// };
+
+// type Todo = {
+//   title: string;
+// };
+
+// function print(obj: Person | Todo) {
+//   if (isPerson(obj)) console.log(obj.name);
+//   console.log(obj.title);
+//   return;
+// }
+
+// function isPerson(obj: Person | Todo): obj is Person {
+//   return 'name' in obj;
+// }
+
+const PRIORITIES = ['High', 'Medium', 'Low'] as const;
+type Priority = (typeof PRIORITIES)[number];
+type Todo = {
+  title: string;
+  description: string;
+};
+
+function func(todo: Todo) {
+  if (isPriority(todo.description)) todo.description;
+  else todo.description;
 }
 
-wait(1000).then(value => console.log(value.json()));
+function isPriority(description: string): description is Priority {
+  return PRIORITIES.includes(description as Priority);
+}
