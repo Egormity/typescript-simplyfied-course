@@ -497,18 +497,39 @@
 //   return 'name' in obj;
 // }
 
-const PRIORITIES = ['High', 'Medium', 'Low'] as const;
-type Priority = (typeof PRIORITIES)[number];
-type Todo = {
-  title: string;
-  description: string;
-};
+// const PRIORITIES = ['High', 'Medium', 'Low'] as const;
+// type Priority = (typeof PRIORITIES)[number];
+// type Todo = {
+//   title: string;
+//   description: string;
+// };
 
-function func(todo: Todo) {
-  if (isPriority(todo.description)) todo.description;
-  else todo.description;
-}
+// function func(todo: Todo) {
+//   if (isPriority(todo.description)) todo.description;
+//   else todo.description;
+// }
 
-function isPriority(description: string): description is Priority {
-  return PRIORITIES.includes(description as Priority);
-}
+// function isPriority(description: string): description is Priority {
+//   return PRIORITIES.includes(description as Priority);
+// }
+
+// type Options = {
+//   debig: boolean;
+//   format: {
+//     tabs: boolean;
+//     tabWidth: number;
+//   };
+// };
+
+// function printNumber(num: number, options?: Options) {
+//   console.log(num);
+// }
+
+// // @ts-expect-error
+// printNumber(3, { debug: false, format: { tabs: true } });
+
+import { times } from 'lodash';
+
+times(4);
+
+console.superLog();
